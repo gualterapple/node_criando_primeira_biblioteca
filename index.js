@@ -8,12 +8,23 @@ function trataErro(erro){
 function pegaArquivo(caminho)
 {
   const encoding = 'utf-8';
+  fs.promises.readFile(caminho, encoding)
+  .then((texto) => {
+    console.log(chalk.bgYellow(texto));
+  })
+  .catch((erro) => {
+    trataErro(erro);});
+}
+
+/*function pegaArquivo(caminho)
+{
+  const encoding = 'utf-8';
   fs.readFile(caminho, encoding,(err, data) => {
     if(err){
       trataErro(err);
     }
-    console.log(chalk.green(data));
+    console.log(chalk.bgYellow(data));
   });
-}
+}*/
 
-pegaArquivo('./arquivos/texo1.md');
+pegaArquivo('./arquivos/texto1.md');
