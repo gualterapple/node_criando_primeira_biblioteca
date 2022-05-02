@@ -5,7 +5,18 @@ function trataErro(erro){
   throw new Error(chalk.red(erro.code, 'Gualter, o arquivo não foi encontrado'));
 }
 
-function pegaArquivo(caminho)
+async function pegaArquivo(caminho)
+{
+  const encoding = 'utf-8';
+  try {
+    const texto = await fs.promises.readFile(caminho, encoding);
+    console.log(chalk.yellow(texto));
+  } catch (error) {
+    trataErro(error);
+  }
+}
+
+/*function pegaArquivo(caminho)
 {
   const encoding = 'utf-8';
   fs.promises.readFile(caminho, encoding)
@@ -14,7 +25,7 @@ function pegaArquivo(caminho)
   })
   .catch((erro) => {
     trataErro(erro);});
-}
+}*/
 
 /*function pegaArquivo(caminho)
 {
